@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = RestaurantMenuModuleWindow.class, remap = false)
 public abstract class RestaurantMenuModuleWindowMixin {
 
-    @Redirect(method = "lambda$updateResources$1", at = @At(value = "INVOKE", target = "Ljava/lang/String;contains(Ljava/lang/CharSequence;)Z"), remap = false)
+    @Redirect(method = {"lambda$updateResources$1", "lambda$updateResources$2"}, at = @At(value = "INVOKE", target = "Ljava/lang/String;contains(Ljava/lang/CharSequence;)Z"), remap = false)
     private boolean updateResources$filterPredicate(String instance, CharSequence s) {
         return LinkageManager.match(instance, s);
     }
